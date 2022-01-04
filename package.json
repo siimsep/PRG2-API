@@ -1,0 +1,31 @@
+{
+  "name": "prog2algusest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siimsep/prog2algusest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siimsep/prog2algusest/issues"
+  },
+  "homepage": "https://github.com/siimsep/prog2algusest#readme",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "express": "^4.17.2",
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.8",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0"
+  }
+}
