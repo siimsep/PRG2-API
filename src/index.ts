@@ -1,56 +1,17 @@
 import express, { Request, Response, Express } from 'express';
+import db from './db';
+import usersController from './components/users/controller';
+import responseCodes from './components/general/responseCodes';
 
 const app: Express = express();
 app.use(express.json())
 const port: number = 3000;
 
-// Http response koodid
-const responseCodes = {
-  ok: 200,
-  created: 201,
-  noContent: 204,
-  badRequest: 400,
-  notFound: 404,
-};
 
-// Dummy database
-const db = {
-  jobList: [
-    {
-      id: 1,
-      lat: 58.91741, // latitude
-      lng: 23.698196, // longitude
-      note: "On these coordinates is an issue to handle", //
-      completion: false, // user can change status of completion if job is done
-    },
-  ],
-  users: [{ id: 1, firstName: "Salim", lastName: "Shady" }],
-};
 /////////////////////////////////////////////////////
 // SHOWING THE USERS
-app.get("/users", (req: Request, res: Response) => {
-  const { users } = db;
-  return res.status(responseCodes.ok).json({
-    users,
-  });
-});
-app.get("/users/:id", (req: Request, res: Response) => {
-  const id: number = parseInt(req.params.id, 10);
-  if (!id) {
-    return res.status(responseCodes.badRequest).json({
-      error: "No valid id provided",
-    });
-  }
-  const user = db.users.find((element) => element.id === id);
-  if (!user) {
-    return res.status(responseCodes.badRequest).json({
-      error: `No user found with id: ${id}`,
-    });
-  }
-  return res.status(responseCodes.ok).json({
-    user,
-  });
-});
+app.get("/users", usersController.getAllUsers);
+app.get("/users/:id", usersController.getUserbyId);
 // SHOWING THE JOBLIST
 app.get("/jobs", (req: Request, res: Response) => {
   const { jobList } = db;
