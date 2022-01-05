@@ -6,12 +6,17 @@ import responseCodes from './components/general/responseCodes';
 const app: Express = express();
 app.use(express.json())
 const port: number = 3000;
+import cors from "cors";
 
-
+app.use(cors());
 /////////////////////////////////////////////////////
-// SHOWING THE USERS
+//  USERS
 app.get("/users", usersController.getAllUsers);
 app.get("/users/:id", usersController.getUserbyId);
+app.post("/users", usersController.addUser);
+app.delete("/users/:id", usersController.deleteUser);
+
+
 // SHOWING THE JOBLIST
 app.get("/jobs", (req: Request, res: Response) => {
   const { jobList } = db;
@@ -37,29 +42,7 @@ app.get("/jobs/:id", (req: Request, res: Response) => {
   });
 });
 /////////////////////////////////////////////////////
-// ADDING USERS
-app.post("/users", (req: Request, res: Response) => {
-  const { firstName, lastName } = req.body;
-  if (!firstName) {
-    return res.status(responseCodes.badRequest).json({
-      error: "First name is required",
-    });
-  }
-  if (!lastName) {
-    return res.status(responseCodes.badRequest).json({
-      error: "Last name is required",
-    });
-  }
-  const id = db.users.length + 1;
-  db.users.push({
-    id,
-    firstName,
-    lastName,
-  });
-  return res.status(responseCodes.created).json({
-    id,
-  });
-});
+
 // ADDING JOBS
 app.post("/jobs", (req: Request, res: Response) => {
   const { lat, lng, note } = req.body;
@@ -92,23 +75,6 @@ app.post("/jobs", (req: Request, res: Response) => {
   });
 });
 /////////////////////////////////////////////////////
-// DELETING USERS
-app.delete("/users/:id", (req: Request, res: Response) => {
-  const id: number = parseInt(req.params.id, 10);
-  if (!id) {
-    return res.status(responseCodes.badRequest).json({
-      error: "No valid id provided",
-    });
-  }
-  const index = db.users.findIndex((element) => element.id === id);
-  if (index < 0) {
-    return res.status(responseCodes.badRequest).json({
-      message: `User not found with id: ${id}`,
-    });
-  }
-  db.users.splice(index, 1);
-  return res.status(responseCodes.noContent).send();
-});
 
 // DELETING JOBS
 app.delete("/jobs/:id", (req: Request, res: Response) => {

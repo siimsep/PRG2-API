@@ -1,3 +1,4 @@
+
 const db = {
     jobList: [
       {
@@ -8,7 +9,14 @@ const db = {
         completion: false, // user can change status of completion if job is done
       },
     ],
-    users: [{ id: 1, firstName: "Salim", lastName: "Shady" }],
+    users: [
+      { 
+        id: 1,
+        firstName: "Salim",
+        lastName: "Shady",
+        email: "juku@juurikas.ee",
+        password: "Juurikas",
+        role: "Admin", }],
   };
 
 export default db;
