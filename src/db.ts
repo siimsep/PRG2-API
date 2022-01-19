@@ -15,8 +15,15 @@ const db = {
         firstName: "Salim",
         lastName: "Shady",
         email: "juku@juurikas.ee",
-        password: "Juurikas",
-        role: "Admin", }],
+        password: "juurikas",
+        role: "Admin", },
+        { 
+          id: 2,
+          firstName: "Sig",
+          lastName: "Sauer",
+          email: "kaalikas@porgand.ee",
+          password: "porgand",
+          role: "User", }],
   };
 
 export default db;

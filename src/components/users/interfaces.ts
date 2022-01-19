@@ -7,7 +7,7 @@
     lastName: string;
     email: string;
     password: string;
-    role: string;
+    role: 'Admin' | 'User';
   }
   
   export default User;

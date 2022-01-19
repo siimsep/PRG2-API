@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import responseCodes from '../general/responseCodes'
 import usersService from './service';
-
+//import User from './interfaces'; Pole interfaced nii lahti kirjutatud, et saaks k6iki typescripti v6lusid kasutada.
 
 
 const usersController = {
@@ -29,7 +29,7 @@ const usersController = {
         });
       },
     addUser: (req: Request, res: Response) => {
-        const { firstName, lastName, email, password, role } = req.body;
+        const { firstName, lastName, email, password } = req.body;
         if (!firstName) {
           return res.status(responseCodes.badRequest).json({
             error: "First name is required",
@@ -40,7 +40,14 @@ const usersController = {
             error: "Last name is required",
           });
         }
-        const id = usersService.addUser(firstName, lastName, email, password, role)
+        const newUser = {         
+          firstName,
+          lastName,
+          email,
+          password,
+          role: 'User'
+        }
+        const id = usersService.addUser(newUser)
         return res.status(responseCodes.created).json({
           id,
         });

@@ -1,28 +1,21 @@
 import db from '../../db';
-import User from './interfaces';
+//import User from './interfaces';  Pole interfaced nii lahti kirjutatud, et saaks k6iki typescripti v6lusid kasutada, aga v2hemalt sain l6puks sellest interface systeemist aru.
 
 const usersService = {
     getAllUsers: () => {
         const {users} = db;
         return users;
     },
-    getUserById: (id: number): User | undefined => {
+    getUserById: (id: number) => {
         const user = db.users.find((element) => element.id === id);
         return user;
     },
-    addUser: (firstName: string,
-        lastName: string,
-        email: string,
-        password: string,
-        role: "Admin" | "User")=>{
+    addUser: (newUser: any)=>{
         const id = db.users.length + 1;
         db.users.push({
           id,
-          firstName,
-          lastName,
-          email,
-          password,
-          role
+          ...newUser
+          
         });
         return id;
     },
