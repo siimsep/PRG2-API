@@ -11,6 +11,17 @@ app.use(express.json())
 const port: number = 3000;
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapi));
 /////////////////////////////////////////////////////
+//  SOME MIDDLEWARE
+var favicon = require("serve-favicon"); // Favicon middleware
+var path = require('path')
+const rateLimit = require("express-rate-limit"); // Middleware that limits the repeated API requests from the same IP address.
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
+app.use(limiter);
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))) // This is a favicon I use on all of my schoolwork.
+/////////////////////////////////////////////////////
 //  USERS
 app.get("/users", usersController.getAllUsers);
 app.get("/users/:id", usersController.getUserbyId);
