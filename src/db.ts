@@ -1,5 +1,12 @@
+import {User} from './components/users/interfaces';
+import {Job} from './components/jobs/interface';
 
-const db = {
+interface Db {
+  users: User[];
+  jobList: Job[];
+}
+
+const db: Db = {
     jobList: [
       {
         id: 1,
@@ -23,7 +30,7 @@ const db = {
           lastName: "Sauer",
           email: "kaalikas@porgand.ee",
           password: "$2b$10$78lt0Bh8WpDSgGHjpK1O/eAONiDX8lA8PzTfRkga91MxBhZkvDASC",
-          role: "User", }],
+          role: "User", },]
   };
 
 export default db;

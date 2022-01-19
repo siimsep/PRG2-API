@@ -8,4 +8,4 @@
     note: string;
     completion: boolean;
   }
-  export default Job;
+  export { Job }; 

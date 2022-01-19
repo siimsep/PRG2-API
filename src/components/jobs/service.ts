@@ -1,5 +1,5 @@
 import db from '../../db';
-import Job from './interface';
+//import Job from './interface';
 
 const jobService = {
     getAllJobs: () => {
