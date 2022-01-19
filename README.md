@@ -1,4 +1,4 @@
-# prog2algusest
+prog2algusest
 Sest esimene (ja teine ja kolmaski) versioon mu koolitöödest ei toiminud korralikult ja lihtsam ja arusaadavam oli otsast alustada, 2x tehes saab ehk arugi.<br />
 ---
 Alustamiseks<br />
