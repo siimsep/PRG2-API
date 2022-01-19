@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import db from '../../db';
 import responseCodes from '../general/responseCodes'
 import usersService from './service';
 

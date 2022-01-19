@@ -7,6 +7,7 @@ const app: Express = express();
 app.use(express.json())
 const port: number = 3000;
 import cors from "cors";
+import jobController from './components/jobs/controller';
 
 app.use(cors());
 /////////////////////////////////////////////////////
@@ -17,63 +18,10 @@ app.post("/users", usersController.addUser);
 app.delete("/users/:id", usersController.deleteUser);
 
 
-// SHOWING THE JOBLIST
-app.get("/jobs", (req: Request, res: Response) => {
-  const { jobList } = db;
-  return res.status(responseCodes.ok).json({
-    jobList,
-  });
-});
-app.get("/jobs/:id", (req: Request, res: Response) => {
-  const id: number = parseInt(req.params.id, 10);
-  if (!id) {
-    return res.status(responseCodes.badRequest).json({
-      error: "No valid id provided",
-    });
-  }
-  const job = db.jobList.find((element) => element.id === id);
-  if (!job) {
-    return res.status(responseCodes.badRequest).json({
-      error: `No job found with id: ${id}`,
-    });
-  }
-  return res.status(responseCodes.ok).json({
-    job,
-  });
-});
-/////////////////////////////////////////////////////
-
-// ADDING JOBS
-app.post("/jobs", (req: Request, res: Response) => {
-  const { lat, lng, note } = req.body;
-  if (!lat) {
-    return res.status(responseCodes.badRequest).json({
-      error: "Error in coordinates: no latitude",
-    });
-  }
-  if (!lng) {
-    return res.status(responseCodes.badRequest).json({
-      error: "Error in coordinates: no longitude",
-    });
-  }
-  if (!note) {
-    return res.status(responseCodes.badRequest).json({
-      error: "Error, please add note",
-    });
-  }
-  const id = db.jobList.length + 1;
-  db.jobList.push({
-    id,
-    lat,
-    lng,
-    note,
-    completion: false,
-  });
-  return res.status(responseCodes.created).json({
-    id,
-    message: "Great success!",
-  });
-});
+// JOBS
+app.get("/jobs", jobController.getAllJobs);
+app.get("/jobs/:id", jobController.getAJob);
+app.post("/jobs", jobController.addAJob);
 /////////////////////////////////////////////////////
 
 // DELETING JOBS
