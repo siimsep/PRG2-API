@@ -1,13 +1,17 @@
 /**
  * User interface
  */
- interface User {
-    id: number;
+ interface NewUser {
     firstName: string;
     lastName: string;
     email: string;
     password: string;
     role: 'Admin' | 'User';
   }
+  interface User extends NewUser{
+    id: number;
+  }
+
+
   
-  export default User;
+  export {NewUser, User};

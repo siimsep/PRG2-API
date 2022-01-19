@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import responseCodes from '../general/responseCodes'
 import usersService from './service';
-//import User from './interfaces'; Pole interfaced nii lahti kirjutatud, et saaks k6iki typescripti v6lusid kasutada.
+import {NewUser, User} from './interfaces'; //Pole interfaced nii lahti kirjutatud, et saaks k6iki typescripti v6lusid kasutada.
 
 
 const usersController = {
@@ -28,7 +28,7 @@ const usersController = {
           user,
         });
       },
-    addUser: (req: Request, res: Response) => {
+    addUser: async(req: Request, res: Response) => {
         const { firstName, lastName, email, password } = req.body;
         if (!firstName) {
           return res.status(responseCodes.badRequest).json({
@@ -40,14 +40,14 @@ const usersController = {
             error: "Last name is required",
           });
         }
-        const newUser = {         
+        const newUser: NewUser = {         
           firstName,
           lastName,
           email,
           password,
-          role: 'User'
+          role: 'User',
         }
-        const id = usersService.addUser(newUser)
+        const id = await usersService.addUser(newUser)
         return res.status(responseCodes.created).json({
           id,
         });

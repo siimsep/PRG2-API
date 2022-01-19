@@ -4,6 +4,7 @@ import jobController from './components/jobs/controller';
 import swaggerUi from 'swagger-ui-express';
 import openapi from "./openapi.json";
 import cors from "cors";
+import authController from './components/auth/authController';
 
 const app: Express = express();
 app.use(cors());
@@ -21,6 +22,9 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))) // This is a favicon I use on all of my schoolwork.
+/////////////////////////////////////////////////////
+//  LOGIN
+app.post("/login", authController.login);
 /////////////////////////////////////////////////////
 //  USERS
 app.get("/users", usersController.getAllUsers);

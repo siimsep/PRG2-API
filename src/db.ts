@@ -15,14 +15,14 @@ const db = {
         firstName: "Salim",
         lastName: "Shady",
         email: "juku@juurikas.ee",
-        password: "juurikas",
+        password: "$2b$10$DgO4i4EwpiQHW6Rd5ww6BeVIsDTj56J.6TQ9lnqBohswLvqAl1aCK",
         role: "Admin", },
         { 
           id: 2,
           firstName: "Sig",
           lastName: "Sauer",
           email: "kaalikas@porgand.ee",
-          password: "porgand",
+          password: "$2b$10$78lt0Bh8WpDSgGHjpK1O/eAONiDX8lA8PzTfRkga91MxBhZkvDASC",
           role: "User", }],
   };
 
