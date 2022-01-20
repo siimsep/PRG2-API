@@ -5,8 +5,8 @@ import {NewUser, User} from './interfaces'; //Pole interfaced nii lahti kirjutat
 
 
 const usersController = {
-    getAllUsers :(req: Request, res: Response) => {
-        const users = usersService.getAllUsers();
+    getAllUsers :async (req: Request, res: Response) => {
+        const users = await usersService.getAllUsers();
         return res.status(responseCodes.ok).json({
           users,
         });
@@ -66,6 +66,7 @@ const usersController = {
             error: "No valid id provided",
           });
         }
+        if ((id === res.locals.user.id) || (res.locals.user.role === 'Admin')) {
         const user = usersService.getUserById(id);
         if (!user) {
           return res.status(responseCodes.badRequest).json({
@@ -75,6 +76,7 @@ const usersController = {
         usersService.deleteUser(id);
         return res.status(responseCodes.noContent).send();
       }
+    }
 };
 
 export default usersController;

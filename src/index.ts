@@ -29,10 +29,10 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))) // This is a fav
 app.post("/login", authController.login);
 app.post("/users", usersController.addUser);
 
-app.use(isLoggedIn);
+//app.use(isLoggedIn);
 /////////////////////////////////////////////////////
 //  USERS
-app.get("/users", isAdmin, usersController.getAllUsers);
+app.get("/users", /* isAdmin,  */usersController.getAllUsers);
 app.get("/users/:id", usersController.getUserbyId);
 app.delete("/users/:id", usersController.deleteUser);
 // JOBS

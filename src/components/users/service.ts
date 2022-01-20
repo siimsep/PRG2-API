@@ -1,11 +1,13 @@
 import db from '../../db';
-//import User from './interfaces';  Pole interfaced nii lahti kirjutatud, et saaks k6iki typescripti v6lusid kasutada, aga v2hemalt sain l6puks sellest interface systeemist aru.
 import hashService from '../general/services/hashService';
 import { NewUser, User } from './interfaces';
+import pool from '../../database'
 
 const usersService = {
-    getAllUsers: () => {
-        const {users} = db;
+    getAllUsers: async() => {
+        const [users] = await pool.query('SELECT * FROM users');
+
+        //const {users} = db;
         return users;
     },
     getUserById: (id: number) => {
