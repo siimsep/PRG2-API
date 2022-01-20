@@ -1,0 +1,15 @@
+MYSQL-ga sidumise memo:
+
+Sellel teekonnal saatis mind mitu häda:
+
+1) Mysqli sisselogimise häda, mis tuli välja, et tulenes mingist vanast arvutis olevast ja töötavast mysql andmebaasist.
+2) Konteinerisse andmeid sisestades andis "mysql error 1364 (hy000) field 'id' doesn't have a default value", käisin SQL koodi 
+näpuga järge ajades mitmeid kordi läbi, lõpuks jagasin siis lahti, et mingid vanemad, vigased andmed jäänud sinna volüümi sisse,
+mysqlis lõpuks vaadates andmeid oligi viga ID juures. Ära kustutades ja uued sisestades sai tööga jätkata.
+3) Kui mysql püsti, sai esimest päringut teha. Logimise juures tuli jälle häda, ei saanud servisist tokenit kätte. Taaskord ajasin
+näpuga järge enda ja Teie koodis. No ei leidnud lahendust. Lõpuks tund hiljem muudkui console logisin kõiki asju, ja lõpuks avastasin
+et mysql andmebaasi sai sisestatud parool valesti, sisestatud oli tavalise sõnana, mitte aga vajamineva hashitud kujul. Väike heureka 
+hetk ja sai lõpuks tokeni kätte. 
+
+Suht suur väljakutse see osa, nii hilja peale jäi, sest mured viisid motivatsiooni väga alla ja käega löömist oli palju. Isegi täna
+tahtsin umbes 2 korda käega lüüa sellele asjale. 

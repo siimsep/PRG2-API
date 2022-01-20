@@ -23,15 +23,19 @@ const usersService = {
         return user[0];
     },
     addUser: async(newUser: NewUser)=>{
-        const id = db.users.length + 1;
-        const hashedPassword = await hashService.hash(newUser.password)
-        /* db.users.push({
-          id,
-          ...newUser,
-          password: hashedPassword
-          
-        }); */
-        return id;
+        //const id = db.users.length + 1;
+        try {
+            const hashedPassword = await hashService.hash(newUser.password)
+            const user = {
+                ...newUser,
+                password: hashedPassword
+            }
+            const [result]: any = await pool.query('INSERT INTO users SET ?', [user])
+            return result.insertId;
+        } catch (error) {
+            return false
+        }
+       
     },
     deleteUser: (id:number)=> {
         const index = db.users.findIndex((element) => element.id === id);
