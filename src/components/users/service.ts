@@ -5,28 +5,32 @@ import pool from '../../database'
 
 const usersService = {
     getAllUsers: async() => {
-        const [users] = await pool.query('SELECT * FROM users');
+        const [users]:any = await pool.query('SELECT * FROM users');
+        
 
         //const {users} = db;
         return users;
     },
-    getUserById: (id: number) => {
-        const user = db.users.find((element) => element.id === id);
+    getUserById: async (id: number) => {
+        const [user] = await pool.query(`SELECT * FROM users WHERE id = ?`, [id])
+        //const user = db.users.find((element) => element.id === id);
         return user;
     },
-    getUserByEmail: (email: string)/* : (User | undefined) */  => {
-        const user = db.users.find((element) => element.email === email);
-        return user;
+    getUserByEmail: async (email: string)/* : (User | undefined) */  => {
+        const [user]:any = await pool.query('SELECT * FROM users WHERE email=?', [email]);
+        //const user = db.users.find((element) => element.email === email);
+        //console.log([user]);
+        return user[0];
     },
     addUser: async(newUser: NewUser)=>{
         const id = db.users.length + 1;
         const hashedPassword = await hashService.hash(newUser.password)
-        db.users.push({
+        /* db.users.push({
           id,
           ...newUser,
           password: hashedPassword
           
-        });
+        }); */
         return id;
     },
     deleteUser: (id:number)=> {

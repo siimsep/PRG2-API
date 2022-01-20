@@ -10,6 +10,9 @@
   }
   interface User extends NewUser{
     id: number;
+    dateCreated: Date;
+    dateDeleted: Date | null;
+    dateUpdated: Date;
   }
 
 

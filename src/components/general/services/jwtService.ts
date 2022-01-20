@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { User } from '../../users/interfaces';
+import config from '../../../config';
 
 const jwtPassword = '112131'
 const jwtService = {

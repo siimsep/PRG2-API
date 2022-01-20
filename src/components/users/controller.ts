@@ -11,7 +11,7 @@ const usersController = {
           users,
         });
       },
-    getUserbyId: (req: Request, res: Response) => {
+    getUserbyId: async(req: Request, res: Response) => {
         const id: number = parseInt(req.params.id, 10);
         if (!id) {
           return res.status(responseCodes.badRequest).json({
@@ -19,7 +19,7 @@ const usersController = {
           });
         }
         if ((id === res.locals.user.id) || (res.locals.user.role === 'Admin')) {
-          const user = usersService.getUserById(id);
+          const user = await usersService.getUserById(id);
           if (!user) {
             return res.status(responseCodes.badRequest).json({
               error: `No user found with id: ${id}`,

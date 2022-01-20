@@ -1,12 +1,12 @@
 import {User} from './components/users/interfaces';
 import {Job} from './components/jobs/interface';
 
-interface Db {
+/* interface Db {
   users: User[];
   jobList: Job[];
-}
+} */
 
-const db: Db = {
+const db = {
     jobList: [
       {
         id: 1,
@@ -23,14 +23,16 @@ const db: Db = {
         lastName: "Shady",
         email: "juku@juurikas.ee",
         password: "$2b$10$DgO4i4EwpiQHW6Rd5ww6BeVIsDTj56J.6TQ9lnqBohswLvqAl1aCK",
-        role: "Admin", },
+        role: "Admin",
+},
         { 
           id: 2,
           firstName: "Sig",
           lastName: "Sauer",
           email: "kaalikas@porgand.ee",
           password: "$2b$10$78lt0Bh8WpDSgGHjpK1O/eAONiDX8lA8PzTfRkga91MxBhZkvDASC",
-          role: "User", },]
+          role: "User",
+ },]
   };
 
 export default db;
