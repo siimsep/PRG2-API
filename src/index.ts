@@ -5,6 +5,8 @@ import swaggerUi from 'swagger-ui-express';
 import openapi from "./openapi.json";
 import cors from "cors";
 import authController from './components/auth/authController';
+import isLoggedIn from './components/auth/isLoggedInMiddleware';
+import isAdmin from './components/auth/isAdminMiddleware';
 
 const app: Express = express();
 app.use(cors());
@@ -25,11 +27,13 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))) // This is a fav
 /////////////////////////////////////////////////////
 //  LOGIN
 app.post("/login", authController.login);
+app.post("/users", usersController.addUser);
+
+app.use(isLoggedIn);
 /////////////////////////////////////////////////////
 //  USERS
-app.get("/users", usersController.getAllUsers);
+app.get("/users", isAdmin, usersController.getAllUsers);
 app.get("/users/:id", usersController.getUserbyId);
-app.post("/users", usersController.addUser);
 app.delete("/users/:id", usersController.deleteUser);
 // JOBS
 app.get("/jobs", jobController.getAllJobs);

@@ -18,15 +18,22 @@ const usersController = {
             error: "No valid id provided",
           });
         }
-        const user = usersService.getUserById(id);
-        if (!user) {
-          return res.status(responseCodes.badRequest).json({
-            error: `No user found with id: ${id}`,
+        if ((id === res.locals.user.id) || (res.locals.user.role === 'Admin')) {
+          const user = usersService.getUserById(id);
+          if (!user) {
+            return res.status(responseCodes.badRequest).json({
+              error: `No user found with id: ${id}`,
+            });
+          }
+          return res.status(responseCodes.ok).json({
+            user,
           });
-        }
-        return res.status(responseCodes.ok).json({
-          user,
-        });
+        } 
+           return res.status(responseCodes.notAuthorized).json({
+            error: "Not authorized to view other's data",
+          });
+        
+       
       },
     addUser: async(req: Request, res: Response) => {
         const { firstName, lastName, email, password } = req.body;

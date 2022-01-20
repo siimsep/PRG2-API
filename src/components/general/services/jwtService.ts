@@ -13,8 +13,14 @@ sign: async(user:User)=>{
 
 },
 verify: async (token:string) => {
-    const verify = jwt.verify(token, jwtPassword);
+    try {
+        const verify = await jwt.verify(token, jwtPassword);
     return verify;
+    } catch (error) {
+       //console.log(error);
+       return false 
+    }
+    
 }
 }
 export default jwtService;

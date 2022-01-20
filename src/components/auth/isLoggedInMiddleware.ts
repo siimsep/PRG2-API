@@ -1,8 +1,24 @@
 import { Request, Response, NextFunction } from 'express';
+import jwtService from '../general/services/jwtService'
+import responseCodes from '../general/responseCodes'
 
-const logger = (req: Request, res: Response, next: NextFunction) => {
-  console.log(`${req.url}, ${new Date().toISOString()}`);
+const isLoggedIn = async(req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(" ")[1];
+  if (!token) {
+    return res.status(responseCodes.notAuthorized).json({
+      error: 'No token provided'
+    })
+  }
+  const payload = await jwtService.verify(token);
+  if (!payload) {
+    return res.status(responseCodes.notAuthorized).json({
+      error: 'Invalid token'
+    })
+  }
+  console.log(payload);
+  res.locals.user = payload;
   return next();
 };
 
-export default logger;
+export default isLoggedIn;
