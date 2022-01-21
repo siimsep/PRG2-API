@@ -1,0 +1,4 @@
+Kohustuslik memo ka:
+
+Testimine sai tööle pandud, aga koos sellega Postmanis päringut tehes hakkas API kokku jooksma.
+Õppetund iseendale: teha eraldi giti branchid. 

@@ -1,4 +1,4 @@
-import express, { Express } from 'express';
+import express, {Express} from 'express';
 import usersController from './components/users/controller';
 import jobController from './components/jobs/controller';
 import swaggerUi from 'swagger-ui-express';
@@ -11,7 +11,6 @@ import isAdmin from './components/auth/isAdminMiddleware';
 const app: Express = express();
 app.use(cors());
 app.use(express.json())
-const port: number = 3000;
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapi));
 /////////////////////////////////////////////////////
 //  SOME MIDDLEWARE
