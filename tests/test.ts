@@ -22,7 +22,16 @@ describe('Users controller', () => {
       expect(response.body.error).to.equal('No token provided');
     });
   });
-  
+});
+describe('Users controller', () => {
+  describe('POST /users', () => {
+    it('responds with error message and status 400', async () => {
+      const response = await request(app).get('/users');
+      expect(response.body).to.be.a('object');
+      expect(response.statusCode).to.equal(400);
+      expect(response.body.error).to.equal("First name is required");
+    });
+  });
 });
 describe('Jobs controller', () => {
   describe('GET /jobs', () => {
