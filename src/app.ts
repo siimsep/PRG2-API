@@ -11,7 +11,7 @@ import isAdmin from './components/auth/isAdminMiddleware';
 const app: Express = express();
 app.use(cors());
 app.use(express.json())
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapi));
+//app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapi));
 /////////////////////////////////////////////////////
 //  SOME MIDDLEWARE
 var favicon = require("serve-favicon"); // Favicon middleware
@@ -21,6 +21,7 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
 });
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapi));
 app.use(limiter);
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))) // This is a favicon I use on all of my schoolwork.
 /////////////////////////////////////////////////////
@@ -28,10 +29,10 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))) // This is a fav
 app.post("/login", authController.login);
 app.post("/users", usersController.addUser);
 
-app.use(isLoggedIn);
+//app.use(isLoggedIn);
 /////////////////////////////////////////////////////
 //  USERS
-app.get("/users", isAdmin, usersController.getAllUsers);
+app.get("/users", /* isAdmin */ usersController.getAllUsers);
 app.get("/users/:id", usersController.getUserbyId);
 app.delete("/users/:id", usersController.deleteUser);
 // JOBS
@@ -42,3 +43,7 @@ app.delete("/jobs/:id", jobController.deleteJob);
 app.patch("/jobs/:id", jobController.updateJob);
 
 export default app;
+
+
+// API dokumentatsioon endpointide kohta (ilma autentimiseta saab swaggeris tööle)
+// JOBS testidega kaetud!

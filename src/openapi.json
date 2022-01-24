@@ -1,62 +1,479 @@
 {
-    "openapi":"3.0.2",
+    "openapi": "3.0.2",
     "info": {
-      "title":"To-Do list for power grid workers",
-      "version":"1.0"
+      "title": "API documentation for Programmeerimine II",
+      "version": "1.0"
+
     },
     "servers": [
-      {"url":"http://localhost:3000/"}
+      {
+        "url": "http://localhost:3000/"
+      }
     ],
     "paths": {
-        "/users": {
-            "get": {
-                "description": "Get all users",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "List of all users",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "users": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "id": {
-                                                        "type": "number",
-                                                        "example": "1"
-                                                    },
-                                                    "lat": {
-                                                        "type": "number",
-                                                        "example": "53.72"
-                                                    },
-                                                    "lng": {
-                                                        "type": "number",
-                                                        "example": "27.42"
-                                                    },
-                                                    "note": {
-                                                        "type": "string",
-                                                        "example": "Wires on the ground"
-                                                    },
-                                                    "completion": {
-                                                        "type": "boolean",
-                                                        "example": "false"
-                                                    }
-
-                                                }
-                                            }
-                                        }
-
-                                    }
-                                }
+      "/jobs": {
+        "get": {
+          "description": "Get list of jobs",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "List of all jobs",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "jobs": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number",
+                              "example": "1"
+                            },
+                            "lat": {
+                              "type": "number",
+                              "example": "53.72"
+                            },
+                            "lng": {
+                              "type": "number",
+                              "example": "27.42"
+                            },
+                            "note": {
+                              "type": "string",
+                              "example": "Wires on the ground"
+                            },
+                            "completion": {
+                              "type": "boolean",
+                              "example": "false"
                             }
+                          }
                         }
+                      }
                     }
+                  }
                 }
+              }
             }
+          }
+        },
+        "post": {
+          "description": "Add a job",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Add a job",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "jobList": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number",
+                              "example": "1"
+                            },
+                            "lat": {
+                              "type": "number",
+                              "example": "53.72"
+                            },
+                            "lng": {
+                              "type": "number",
+                              "example": "27.42"
+                            },
+                            "note": {
+                              "type": "string",
+                              "example": "Wires on the ground"
+                            },
+                            "completion": {
+                              "type": "boolean",
+                              "example": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
+      },
+      "/jobs/{id}": {
+        "get": {
+          "description": "Get a job",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Returns specified job",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "jobList": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number",
+                              "example": "1"
+                            },
+                            "lat": {
+                              "type": "number",
+                              "example": "53.72"
+                            },
+                            "lng": {
+                              "type": "number",
+                              "example": "27.42"
+                            },
+                            "note": {
+                              "type": "string",
+                              "example": "Wires on the ground"
+                            },
+                            "completion": {
+                              "type": "boolean",
+                              "example": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Something is missing",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string",
+                    "example": "No valid id provided"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "description": "Delete a job",
+          "parameters": [],
+          "responses": {
+            "204": {
+              "description": "Job deleted",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "No job found with id: {id}",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                    
+                  }
+                }
+              }
+            }
+          }
+        },
+        "patch": {
+          "description": "Update a job",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Job number: {id} updated",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "jobs": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number",
+                              "example": "1"
+                            },
+                            "lat": {
+                              "type": "number",
+                              "example": "53.72"
+                            },
+                            "lng": {
+                              "type": "number",
+                              "example": "27.42"
+                            },
+                            "note": {
+                              "type": "string",
+                              "example": "Wires on the ground"
+                            },
+                            "completion": {
+                              "type": "boolean",
+                              "example": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+                "description": "No job found with id: {id}",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object"
+                      
+                    }
+                  }
+                }
+              }
+              
+
+          }
+          
+        }
+      },
+      "/users": {
+        "get": {
+          "description": "Get list of users",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "List of all users",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "jobs": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number",
+                              "example": "1"
+                            },
+                            "firstName": {
+                              "type": "string",
+                              "example": "Juku"
+                            },
+                            "lastName": {
+                              "type": "string",
+                              "example": "Juurikas"
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "juku@juurikas.ee"
+                            },
+                            "password": {
+                              "type": "string",
+                              "example": "juurikas"
+                            },
+                            "role": {
+                                "type": "string",
+                                "example": "Admin"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "description": "Add a user",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Adds a user",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "jobList": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number",
+                              "example": "1"
+                            },
+                            "firstName": {
+                              "type": "string",
+                              "example": "Juku"
+                            },
+                            "lastName": {
+                              "type": "string",
+                              "example": "Juurikas"
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "juku@juurikas.ee"
+                            },
+                            "password": {
+                              "type": "string",
+                              "example": "juurikas"
+                            },
+                            "role": {
+                                "type": "string",
+                                "example": "Admin"
+                            }
+                          }
+                          
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/users/{id}": {
+        "get": {
+          "description": "Get a user",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Shows specified user",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "jobList": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number",
+                              "example": "1"
+                            },
+                            "firstName": {
+                              "type": "string",
+                              "example": "Juku"
+                            },
+                            "lastName": {
+                              "type": "string",
+                              "example": "Juurikas"
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "juku@juurikas.ee"
+                            },
+                            "password": {
+                              "type": "string",
+                              "example": "juurikas"
+                            },
+                            "role": {
+                                "type": "string",
+                                "example": "Admin"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Something is missing",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string",
+                    "example": "No valid id provided"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "description": "Delete a user",
+          "parameters": [],
+          "responses": {
+            "204": {
+              "description": "User {id} deleted",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "No user found with id: {id}",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                    
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/login": {
+        "post": {
+          "description": "Login",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Login",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string",
+                    "example": "token"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Not authorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Check password"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
+    
   }

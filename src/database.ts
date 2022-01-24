@@ -1,7 +1,5 @@
 
 import mysql from 'mysql2';
-import path from 'path';
-import fs from 'fs';
 import config from './config';
 
 const pool = mysql.createPool({
