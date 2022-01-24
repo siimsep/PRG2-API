@@ -48,7 +48,7 @@ const jobController = {
           message: `Great success! New job added with ID: `+id,
         });
       },
-      deleteJob: (req: Request, res: Response) => {
+      deleteJob: async(req: Request, res: Response) => {
         const id: number = parseInt(req.params.id, 10);
         if (!id) {
           return res.status(responseCodes.badRequest).json({
@@ -61,9 +61,11 @@ const jobController = {
             message: `Job not found with id: ${id}`,
           });
         }
-        jobService.deleteJob(id);
+        const deletion = await jobService.deleteJob(id);
+        if(!deletion) {
+          return res.status(responseCodes.serverError).json({})
+        }
         return res.status(responseCodes.noContent).json({
-          message: `Job ${id} deleted`
         });
         
       },

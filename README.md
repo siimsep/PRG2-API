@@ -8,4 +8,4 @@ npm install <br />
 npm start <br />
 http://localhost:3000/users näiteks <br /><br />
 
-http://localhost:3000/api-docs/ tööle pandud, toimib. Kui aega jagub, lisan kõik endpoindid.
+http://localhost:3000/api-docs/
