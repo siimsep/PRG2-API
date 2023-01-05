@@ -1,5 +1,5 @@
-prog2algusest
-Sest esimene (ja teine ja kolmaski) versioon mu koolitöödest ei toiminud korralikult ja lihtsam ja arusaadavam oli otsast alustada, 2x tehes saab ehk arugi.<br />
+Programmeerimine 2 raames tehtud API
+JS, TS, MySQL
 ---
 Alustamiseks<br />
 
@@ -7,5 +7,5 @@ git clone https://github.com/siimsep/prog2algusest.git <br />
 npm install <br />
 npm start <br />
 http://localhost:3000/users näiteks <br /><br />
-
+Dokumentatsiooni leiab 
 http://localhost:3000/api-docs/
