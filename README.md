@@ -3,7 +3,10 @@ JS, TS, MySQL
 ---
 Alustamiseks<br />
 
-git clone https://github.com/siimsep/prog2algusest.git <br />
+ˇˇˇ
+git clone https://github.com/siimsep/prog2algusest.git 
+ˇˇˇ
+<br />
 npm install <br />
 npm start <br />
 http://localhost:3000/users näiteks <br /><br />
