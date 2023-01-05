@@ -1,5 +1,5 @@
 ## Programmeerimine 2 raames tehtud API<br />
-JS, TS, MySQL
+TypeScript, MySQL
 ---
 Alustamiseks
 ```
