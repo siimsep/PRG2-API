@@ -1,21 +1,14 @@
 ## Programmeerimine 2 raames tehtud API<br />
 JS, TS, MySQL
 ---
-Alustamiseks<br />
-
+Alustamiseks
 ```
-
 git clone https://github.com/siimsep/prog2algusest.git 
 ```
-
-<br />
 ```
-
 npm install
 ```
-<br />
 ```
-
 npm start
 ```
 <br />
